@@ -1,0 +1,32 @@
+/* styles.css */
+
+/* Set specific styles for columns */
+.column {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+/* Target the text input and hide the label and its space */
+.stTextInput label {
+    display: none !important;
+}
+
+/* Optional: Set padding for better appearance */
+.stTextInput input {
+    padding: 20px;
+    height: 35px;
+}
+
+div.st-emotion-cache-tcjedx:nth-child(2) {
+    margin-right: 30px;
+}
+
+/* Optional: Remove padding from h3 for consistency */
+h3 {
+    padding-bottom: 20px;
+}
+
+div.st-emotion-cache-434r0z {
+    display: flex;
+}
