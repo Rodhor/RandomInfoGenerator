@@ -7,13 +7,35 @@ def initialize_session_state(default_values) -> None:
         if key not in st.session_state:
             st.session_state[key] = value
 
-def compile_initial_list() -> dict:
-    pass
-
 def load_css() -> list:
     pass
 
 def change_page() -> None:
+    pass
+
+def compile_dictionary_for_generator() -> dict:
+    # Retrieve values from the custom input option, save in a list for labels and formatting respectively ---
+    labels = [st.session_state.labels[i] for i in range(5)]
+    format = [st.session_state.format[i] for i in range(5)]
+
+    # Generate a dictionary with label als formatting as key, value pairs
+    items = dict(zip(labels, format))
+
+    # List comprehension to get selected items with their order - list of dictionaries
+    selected_items = [{'name': key, 'order': order} for order, (key, selected) in enumerate(st.session_state.selection.items()) if selected]
+
+    # Combine the dictionaries into one - selected_items is unpacked and placed first in the new dictionary
+    return {**{item['name']: item['order'] for item in selected_items}, **items}
+
+def compile_draggablelist() -> dict:
+
+    # call dictionary generator to retrieve necessary values
+    combined_dict = compile_dictionary_for_generator()
+
+    # Use listcomprehension to generate a new list of dictionaries, for each item in original - keeping only the order and key values. 
+    return [{'name': key, 'order': order} for order, (key, item) in enumerate(combined_dict.items()) if item != "" and key != ""]
+
+def compile_list_for_dataframe() -> dict:
     pass
 
 def generate_data():
@@ -66,20 +88,7 @@ with col3:
 
 # --- Order of items page ---
 
-# retrieve values from the custom input option, save in a list for labels and formatting respectively ---
-labels = [st.session_state.labels[i] for i in range(5)]
-format = [st.session_state.format[i] for i in range(5)]
-
-# generate a dictionary with label als formatting as key, value pairs
-items = dict(zip(labels, format))
-
-# List comprehension to get selected items with their order - list of dictionaries
-selected_items = [{'name': key, 'order': order} for order, (key, selected) in enumerate(st.session_state.selection.items()) if selected]
-
-# Combine the dictionaries into one - selected_items is unpacked and placed first in the new dictionary
-combined_dict = {**{item['name']: item['order'] for item in selected_items}, **items}
-
-slist = DraggableList([{'name': key, 'order': order} for order, (key, item) in enumerate(combined_dict.items()) if item != "" and key != ""])
+slist = DraggableList(compile_draggablelist())
 
 
 # --- Dataframe preview and download ---
