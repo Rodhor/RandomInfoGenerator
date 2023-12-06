@@ -77,19 +77,17 @@ items = dict(zip(labels, format))
 selected_items = [{'name': key, 'order': order} for order, (key, selected) in enumerate(st.session_state.selection.items()) if selected]
 
 # Combine the dictionaries into one - selected_items is unpacked and placed first in the new dictionary
-combined_dict = {**{item['order']: item['name'] for item in selected_items}, **items}
+combined_dict = {**{item['name']: item['order'] for item in selected_items}, **items}
 
-
-
-#DraggableList()
+slist = DraggableList([{'name': key, 'order': order} for order, (key, item) in enumerate(combined_dict.items()) if item != "" and key != ""])
 
 
 # --- Dataframe preview and download ---
 # Check if selected_items is not None
-if selected_items:
-    # Create a DataFrame with selected items as columns
-    column_names = [item.key for item in selected_items]
-    df = pd.DataFrame(columns=column_names, index=None)
+# if selected_items:
+#     # Create a DataFrame with selected items as columns
+#     column_names = [item.key for item in selected_items]
+#     df = pd.DataFrame(columns=column_names, index=None)
 
-    # Display the DataFrame
-    st.dataframe(df.head(), hide_index=True, use_container_width=True)
+#     # Display the DataFrame
+#     st.dataframe(df.head(), hide_index=True, use_container_width=True)
