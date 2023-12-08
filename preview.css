@@ -1,0 +1,9 @@
+/* Hide the input page */
+div.st-emotion-cache-0:nth-child(2) {
+  display: none;
+}
+
+/* Hide the order page */
+div.st-emotion-cache-0:nth-child(3) {
+  display: none;
+}

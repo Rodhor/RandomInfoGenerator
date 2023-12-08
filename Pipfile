@@ -8,6 +8,8 @@ streamlit = "*"
 pandas = "*"
 streamlit-draggable-list = "*"
 faker = "*"
+openpyxl = "*"
+xlsxwriter = "*"
 
 [dev-packages]
 
