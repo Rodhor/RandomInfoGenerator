@@ -15,7 +15,6 @@ def initialize_session_state(default_values) -> None:
 
 
 # Function to load CSS styles
-@st.cache_data
 def load_css() -> None:
     # Define CSS files for different pages
     css_files = {"input": "input.css", "order": "order.css", "preview": "preview.css"}
