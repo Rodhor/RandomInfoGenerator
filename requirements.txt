@@ -1,0 +1,5 @@
+streamlit==1.29.0
+streamlit-draggable-list==0.0.1
+openpyxl==3.1.2
+Faker==20.1.0
+
