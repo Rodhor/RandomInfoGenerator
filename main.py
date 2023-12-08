@@ -147,7 +147,10 @@ with st.container():
         st.markdown("### **Format**")
         for i in range(7):
             st.session_state.format[i] = st.text_input(
-                label=f"{i}", placeholder="Input format", key=f"format_{i}"
+                label=f"{i}",
+                placeholder="Input format",
+                key=f"format_{i}",
+                help=f"Specify the format for element {i}. Use '#' to represent random numbers and '?' to represent random letters. For example, '###???x' might generate '123ABCx'.",
             )
 
     entries = st.number_input(
